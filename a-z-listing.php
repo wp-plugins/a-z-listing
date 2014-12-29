@@ -3,7 +3,7 @@
 Plugin Name: A-Z Listing
 Plugin URI: http://bowlhat.net/
 Description: Display an A to Z listing of posts
-Version: 0.1
+Version: 0.3
 Author: Daniel Llewellyn
 Author URI: http://bowlhat.net
 License: GPLv2
@@ -39,14 +39,6 @@ function bh_az_listing_init() {
 		foreach (glob($dir."partials/*.php") as $filename) {
 			require_once($filename);
 		}
-	}
-
-	// widgets: auto register
-	foreach (glob($dir."widgets/*.php") as $filename) {
-		require_once($filename);
-		$name = substr($name, 0, strlen($name) - strlen(".php"));
-		$name = substr($name, strrpos($name, "/")+1);
-		register_widget($name);
 	}
 
 	// locale
@@ -88,5 +80,19 @@ function bh_az_listing_init() {
 		if ($matches[1] != 'admin' || is_admin()) {
 			wp_enqueue_style($code, $url);
 		}
+	}
+}
+
+add_action('widgets_init', 'bh_az_listing_widgets');
+function bh_az_listing_widgets() {
+	$dir = dirname(__FILE__)."/";
+	
+	// widgets: auto register
+	foreach (glob($dir."widgets/*.php") as $filename) {
+		require_once($filename);
+
+		$filename = substr($filename, 0, strlen($filename) - strlen(".php"));
+		$filename = substr($filename, strrpos($filename, "/")+1);
+		register_widget($filename);
 	}
 }

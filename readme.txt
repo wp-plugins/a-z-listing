@@ -2,8 +2,8 @@
 Contributors: diddledan
 Tags: a to z, a-z, archive, listing, widget
 Requires at least: 3.5
-Tested up to: 3.7
-Stable tag: trunk
+Tested up to: 4.1
+Stable tag: 0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,13 @@ function remove_az_section_targeting($sections) {
 This filter can also be used, by removing entries which are standard $post variables, to limit which top-level pages are used as section identifiers.
 
 == Changelog ==
+
+= 0.3 =
+fixed failure to activate as reported by ml413 and verified by geoffrey (both WordPress.org usernames)
+	see: https://wordpress.org/support/topic/fatal-error-when-trying-to-install-1
+
+= 0.2 =
+renamed the plugin file and packaged for release
 
 = 0.1 =
 first release
